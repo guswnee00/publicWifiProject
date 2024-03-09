@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/hyunjulee/Desktop/zerobase/project/publicWifiProject/publicWifi.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2724"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,15:mainsqlite_sequence"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="sqlite_sequence" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="36"/><column index="2" value="27"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">-- 와이파이
+CREATE TABLE public_wifi (
+    wifi_id INTEGER PRIMARY KEY AUTOINCREMENT, -- 와이파이아이디
+    x_fwifi_mgr_no TEXT, -- 관리번호
+    x_fwifi_wrdofc TEXT, -- 자치구
+    x_swifi_main_nm TEXT, -- 와이파이명
+    x_swifi_adres1 TEXT, -- 도로명주소
+    x_swifi_adres2 TEXT, -- 상세주소
+    x_swifi_instl_floor TEXT, -- 설치위치(층)
+    x_swifi_instl_ty TEXT, -- 설치유형
+    x_swifi_svc_se TEXT, -- 서비스구분
+    x_swifi_cmcwr TEXT, -- 망종류
+    x_swifi_cnstc_year TEXT, -- 설치년도
+    x_swifi__inout_door TEXT, -- 실내외구분
+    x_swifi_remars3 TEXT, -- 접속환경
+    lat REAL, -- y좌표
+    lnt REAL, -- x좌표
+    work_dttm TEXT -- 작업일자
+);
+
+-- 리스트
+CREATE TABLE bookmark_list (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, -- 아이디
+    wifi_id INTEGER, -- 와이파이아이디
+    bookmark_id INTEGER, -- 북마크아이디
+    FOREIGN KEY (wifi_id) REFERENCES public_wifi(wifi_id), -- 외래키 제약 조건 추가
+    FOREIGN KEY (bookmark_id) REFERENCES bookmark(bookmark_id) -- 외래키 제약 조건 추가
+);
+
+-- 북마크
+CREATE TABLE bookmark (
+    bookmark_id INTEGER PRIMARY KEY AUTOINCREMENT, -- 북마크아이디
+    name TEXT, -- 북마크이름
+    sequence TEXT, -- 순서
+    register_dttm TEXT, -- 등록일자
+    modify_dttm TEXT -- 수정일자
+);
+
+-- 검색기록
+CREATE TABLE search_history (
+    history_id INTEGER PRIMARY KEY AUTOINCREMENT, -- 기록아이디
+    wifi_id INTEGER, -- 와이파이아이디
+    lat REAL, -- y좌표
+    lnt REAL, -- x좌표
+    search_dttm TEXT, -- 검색일자
+    FOREIGN KEY (wifi_id) REFERENCES public_wifi(wifi_id) -- 외래키 제약 조건 추가
+);
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
