@@ -27,7 +27,7 @@ import org.w3c.dom.NodeList;
 
 public class OpenApi {
 	private static final String API_BASE_URL = "http://openapi.seoul.go.kr:8088/";
-	private static final String API_KEY = "69594b507570706933357653567457";
+	private static final String API_KEY = "*****";
 	private static int totalWifiCnt;
 
 	private static int countPublicWifi() throws IOException {

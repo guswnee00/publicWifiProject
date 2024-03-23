@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 
 public class DBConnect {
 	static Connection connection = null;
-	static final String DATABASE_FILE_PATH = "/Users/hyunjulee/Desktop/zerobase/project/publicWifiProject/publicWifi.db";
+	static final String DATABASE_FILE_PATH = "*****";
 	static final String DATABASE_URL = "jdbc:sqlite:" + DATABASE_FILE_PATH;
 	
 	public static Connection getConnection() {
